@@ -1,0 +1,14 @@
+class Solution:
+    def numOfWays(self, n: int) -> int:
+        MOD = 10**9 + 7
+        
+        # For first row
+        same = 6     # Type B: ABA pattern
+        diff = 6     # Type A: ABC pattern
+        
+        for _ in range(2, n + 1):
+            new_diff = (2 * diff + 2 * same) % MOD
+            new_same = (2 * diff + 3 * same) % MOD
+            diff, same = new_diff, new_same
+        
+        return (diff + same) % MOD
